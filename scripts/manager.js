@@ -36,6 +36,28 @@ function displayNext(questions){
         label.className = 'current_question';
         label.innerText = questions[questionCounter].question;
         questionDiv.appendChild(label);
+        var ansDiv = document.createElement('div');
+        ansDiv.id = 'answers_div';
+        ansDiv.className = 'answers_div';
+        for (var i = 0; i < questions[questionCounter].choices.length; i++) {
+            var answerInput = document.createElement('input');
+            answerInput.type = 'radio';
+            answerInput.name = 'choice';
+            answerInput.value = i;
+            answerInput.id = "answer_"+i;
+            answerInput.className = 'answer';
+            var answerLabel = document.createElement('label');
+            answerLabel.setAttribute('for',answerInput.id);
+            answerLabel.innerHTML = questions[questionCounter].choices[i];
+
+            var choice = document.createElement('div');
+            choice.id = 'choice_'+i;
+            choice.appendChild(answerInput);
+            choice.appendChild(answerLabel);
+
+            ansDiv.appendChild(choice);
+        }
+        questionDiv.appendChild(ansDiv);
 	}
 }
 function clearQuestionsDiv(){
