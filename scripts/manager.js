@@ -1,9 +1,10 @@
 var questionCounter = 0; 
 var userChoices = []; 
 readTextFile('data_q.json', function(allText) {
-    console.log(allText);
+    var questions = JSON.parse(allText);
+    console.log(questions);
+    
 });
-
 function readTextFile(file, callback){
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, true);
