@@ -1,59 +1,57 @@
-{
-  "questions" : [
-    {
-      "question": "Which Of The Dialog Box Display a Message And a Data Entry Field",
-      "choices": ["Alert()", "Prompt()", "Confirm()", "Msg()"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "A Function Associated With An object is Called",
-      "choices": ["Function"," Method", "Link", "None"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Event is Used To Check An Empty Text Box",
-      "choices": ["Onclick()", "OnFocus()" , "OnBlur()", "None"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Java Script File Has An Extension Of",
-      "choices": [".Java",".Js", ".javascript", ".xml"],
-      "correctAnswer": 1
-    },
-    {
-      "question": " GetMonth() returns The Month as",
-      "choices": ["Int", "Float", "Char", "String"],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Method Prompt() Contain ........Number of Parameters",
-      "choices": ["One", "Two", "Three ", "Zero"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Inside which HTML element do we put the JavaScript?",
-      "choices": ["Js"," JavaScript", "Script"," Scripting"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Function is Used To Parse a String To Int",
-      "choices": ["Integer.Parse", "Int.Parse","Parse.Int"," None"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "The Tag is used To Give Heading To The Table",
-      "choices": ["Head","Td","Th" ,"Caption"],
-      "correctAnswer": 3
-    },
-    {
-      "question": "IsNaN() Evalutes And Argument To Determine if Given Value",
-      "choices": ["Is Not a Null","Is Not a Number","Is Not a New Object","None Of The Above"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "If Button is clicked .......Event Handler is invoked",
-      "choices": ["OnSubmit()","OnLoad()","IsPostBack()"," Onclick()"],
-      "correctAnswer": 3
-    }
-  ]
-}
+[
+  {
+    "question": "Which Of The Dialog Box Display a Message And a Data Entry Field?",
+    "choices": ["Alert()", "Prompt()", "Confirm()", "Msg()"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "A Function Associated With An object is Called",
+    "choices": ["Function"," Method", "Link", "None"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Event is Used To Check An Empty Text Box",
+    "choices": ["Onclick()", "OnFocus()" , "OnBlur()", "None"],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Java Script File Has An Extension Of",
+    "choices": [".Java",".Js", ".javascript", ".xml"],
+    "correctAnswer": 1
+  },
+  {
+    "question": " GetMonth() returns The Month as",
+    "choices": ["Int", "Float", "Char", "String"],
+    "correctAnswer": 0
+  },
+  {
+    "question": "Method Prompt() Contain ........Number of Parameters",
+    "choices": ["One", "Two", "Three ", "Zero"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Inside which HTML element do we put the JavaScript?",
+    "choices": ["Js"," JavaScript", "Script"," Scripting"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Function is Used To Parse a String To Int",
+    "choices": ["Integer.Parse", "Int.Parse","Parse.Int"," None"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "The Tag is used To Give Heading To The Table",
+    "choices": ["Head","Td","Th" ,"Caption"],
+    "correctAnswer": 3
+  },
+  {
+    "question": "IsNaN() Evalutes And Argument To Determine if Given Value",
+    "choices": ["Is Not a Null","Is Not a Number","Is Not a New Object","None Of The Above"],
+    "correctAnswer": 1
+  },
+  {
+    "question": "If Button is clicked .......Event Handler is invoked",
+    "choices": ["OnSubmit()","OnLoad()","IsPostBack()"," Onclick()"],
+    "correctAnswer": 3
+  }
+]
