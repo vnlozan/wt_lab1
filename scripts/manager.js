@@ -41,12 +41,18 @@ function readTextFile(file, callback){
     rawFile.send(null);
 }
 function displayNext(){
+    console.log(questionCounter);
     if(questionCounter == 0){
         buttonPrev.disabled = true;
     }else{
         buttonPrev.disabled = false;
     }
-	if(questionCounter<questions.length){
+	if(questionCounter < questions.length){
+        if(questionCounter == (questions.length -1)){
+            buttonNext.disabled = true;
+        }else{
+            buttonNext.disabled = false;
+        }
         clearQuestionsDiv();
         var label = document.createElement('div');
         label.className = 'current_question';
@@ -85,7 +91,7 @@ function clearQuestionsDiv(){
 }
 function navigationButtonsEvents(){
     buttonNext.addEventListener("click",function(e){
-        if(questionCounter < (questions.length -1)){
+        if(questionCounter < questions.length){
             questionCounter++;
             displayNext(questions);
         }
@@ -107,11 +113,10 @@ function setTimerEvents(){
         now = new Date();
         var diff = countDownDate - now;
         var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+        qTimer.innerText = seconds;
         //console.log(seconds);
         if(diff < 0){
             clearInterval(timerId);
         }
     }, 1000);
-
 }
