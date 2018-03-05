@@ -1,24 +1,20 @@
 var questionCounter = 0;
 var questions = 0;
 var answers = new Array();
-var userChoices = []; 
+var quizMinutesTime = 1;
 var questionDiv = document.getElementById('questions_div');
 var buttonNext = document.getElementById("button_next");
 var buttonPrev = document.getElementById("button_prev");
 var qTimer = document.getElementById("quiz_timer");
+var buttonStart = document.getElementById("button_start");
+var buttonEnd = document.getElementById("button_end");
 var now;
 var countDownDate; 
 var timerId;
 
 readTextFile('data_q.json', function(allText) {
     questions = JSON.parse(allText);
-    questions.forEach(function(obj,i){
-        var answer = new Object();
-        answer.question = obj.question;
-        answer.rightAns = obj.choices[obj.correctAnswer];
-        answer.userAns = -1;
-        answers.push(answer);
-    });
+    fillInitialDataAnswersArray();
 	displayNext();
     navigationButtonsEvents();
     setTimerEvents();
@@ -102,13 +98,19 @@ function navigationButtonsEvents(){
             displayNext(questions);
         }
     },false);
+    buttonStart.addEventListener("click",function(e){
+        quizStarted();
+    },false);
+    buttonEnd.addEventListener("click",function(e){
+        quizEnded();
+    },false);
 }
 function handleClick(currRadio) {
     answers[questionCounter].userAns = questions[questionCounter].choices[currRadio.value];
 }
 function setTimerEvents(){
     now = new Date();
-    countDownDate = new Date(now.getTime() + (1 * 60 * 1000));
+    countDownDate = new Date(now.getTime() + (quizMinutesTime * 60 * 1000));
     timerId = setInterval(function() {
         now = new Date();
         var diff = countDownDate - now;
@@ -116,7 +118,44 @@ function setTimerEvents(){
         qTimer.innerText = seconds;
         //console.log(seconds);
         if(diff < 0){
-            clearInterval(timerId);
+            qTimer.innerText = 'Time finished';
+            quizEnded();
         }
     }, 1000);
 }
+function fillInitialDataAnswersArray(){
+    questions.forEach(function(obj,i){
+        var answer = new Object();
+        answer.question = obj.question;
+        answer.rightAns = obj.choices[obj.correctAnswer];
+        answer.userAns = -1;
+        answers.push(answer);
+    });
+}
+function quizEnded(){
+    createJSONFile(JSON.stringify(answers));
+    clearInterval(timerId);
+    buttonEnd.disabled = true;
+    buttonNext.disabled = true;
+    buttonPrev.disabled = true;
+    disableCurrentRadioGroup();
+}
+function quizStarted(){
+    buttonEnd.disabled = false;
+    answers = new Array();
+    questionCounter = 0;
+    displayNext();
+    fillInitialDataAnswersArray();
+    setTimerEvents();
+}
+function disableCurrentRadioGroup(){
+    var radios = document.getElementsByName('choice');
+    for (var i = 0; i< radios.length;  i++){
+        radios[i].disabled = true;
+    }
+}
+function createJSONFile(json) {
+    var file = new File([json], "info.json", {type:"application/json"});
+    var url = URL.createObjectURL(file);
+    alert(url);
+};
