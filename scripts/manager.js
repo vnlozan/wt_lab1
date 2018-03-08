@@ -133,7 +133,8 @@ function fillInitialDataAnswersArray(){
     });
 }
 function quizEnded(){
-    createJSONFile(JSON.stringify(answers));
+    showResultsInfo();
+    download(JSON.stringify(answers),"answers.json","application/json");
     clearInterval(timerId);
     buttonEnd.disabled = true;
     buttonNext.disabled = true;
@@ -154,8 +155,43 @@ function disableCurrentRadioGroup(){
         radios[i].disabled = true;
     }
 }
-function createJSONFile(json) {
-    var file = new File([json], "info.json", {type:"application/json"});
-    var url = URL.createObjectURL(file);
-    alert(url);
-};
+function showResultsInfo(){
+    var answeredRight = 0;
+    answers.forEach(function(obj,i){
+        if(obj.rightAns == obj.userAns){
+            answeredRight++;
+        }
+    });
+    console.log(answeredRight);
+    var userResult = roundToTwo(answeredRight/questions.length * 100);
+    
+    var res = new Object();
+    res.answered_right = answeredRight;
+    res.result = userResult + "%";
+    answers.push(res);
+
+    console.log(answers);
+    alert("Answered right: " + answeredRight 
+        + "\n Your result is " + userResult + "%"
+        + "\n Number of questions is "+ questions.length);
+}
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+        url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
